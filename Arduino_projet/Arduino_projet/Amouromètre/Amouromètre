@@ -1,0 +1,57 @@
+const int PinSenso = A0; // variable constante qui ne change jamais pour définir le pin analogique
+const float Temp = 13.0; // temperature 
+
+
+void setup() {
+  Serial.begin(9600); // ouvrir une porte de série 9600 qui signifie la vitesse avec laquelle arduino communique
+  for (int pinNumber = 2; pinNumber<5; pinNumber++){
+    pinMode(pinNumber, OUTPUT); // pas de courant pour piNumber
+    digitalWrite(pinNumber, LOW);
+  }
+ 
+}
+
+void loop() {
+  int sensorVal = analogRead(PinSenso);
+  Serial.print("Valeur du capteur");
+  Serial.print(sensorVal);
+  float voltage = (sensorVal/1024.0) * 5.0; // convertir la lecture du can en tension
+  Serial.print(", Volts:");
+  Serial.print(voltage);
+  Serial.print(", degrés C: ");
+  //il faut convertir la tension de la temperature en degrés mtn et ouais
+  float temperature = (voltage - .5) * 100;
+  Serial.println(temperature);
+
+  if (temperature < Temp+2){
+    digitalWrite(2, LOW);
+    digitalWrite(3, LOW);
+    digitalWrite(4, LOW);
+    Serial.print("Vous êtes pas amoureux");
+
+  }// on allume aucune led si la valeur est est pas supérieur de 2 à la variable Temp
+
+  else if (temperature >= Temp+2 && temperature < Temp+4){
+    digitalWrite(2, HIGH);
+    digitalWrite(3, LOW);
+    digitalWrite(4,LOW);
+    Serial.print("Vous êtes un peu amoureux");
+  } // on allume une led si on 
+  
+  else if (temperature >= Temp+4 && temperature < Temp+6){
+    digitalWrite(2, HIGH);
+    digitalWrite(3, HIGH);
+    digitalWrite(4, LOW);
+    Serial.print("Vous êtes légèrement amoureux");
+  } ///vous êtes assez amoureux on peut le dire c'est la meme chose que la première condition
+
+  else if (temperature >= Temp+6){
+    digitalWrite(2, HIGH);
+    digitalWrite(3, HIGH);
+    digitalWrite(4, HIGH);
+    Serial.print("Vous avez un gros coup de coeur");
+  }// pareil cette fois mais en plus 6 et vous avez un énorme coup de coeur
+
+  delay(1000);
+  
+}
