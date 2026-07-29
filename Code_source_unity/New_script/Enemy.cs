@@ -1,4 +1,4 @@
-using UnityEngine;
+using UnityEngine; // j'ai utilisé de l'IA pour ce script mais j'ai aussi fais seul un petit peu car c'est pas non plus facile
 
 public class Enemy : MonoBehaviour
 {
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
 
            rb.velocity = new Vector2(moveDir * speed, rb.velocity.y); // on avance seulement
 
-           transform.localScale = new Vector2(moveDir * 4f, 4f); // on retourne le sprite si il doit se diriger à gauche d'après ce que j'ai compris si il pars de la droite
+           transform.localScale = new Vector2(moveDir * 4f, 4f); // on retourne le sprite si il doit se diriger à gauche d'après ce que j'ai compris si il pars de la droite j'ai utilisé de l'IA pour celà 
 
         }
         else
