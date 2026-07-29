@@ -5,7 +5,7 @@ const float Temp = 13.0; // temperature
 void setup() {
   Serial.begin(9600); // ouvrir une porte de série 9600 qui signifie la vitesse avec laquelle arduino communique
   for (int pinNumber = 2; pinNumber<5; pinNumber++){
-    pinMode(pinNumber, OUTPUT); // pas de courant pour piNumber
+    pinMode(pinNumber, OUTPUT); //on envoie du courant pour pinNumber
     digitalWrite(pinNumber, LOW);
   }
  
