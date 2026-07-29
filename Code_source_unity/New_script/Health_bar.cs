@@ -8,7 +8,7 @@ public class Health_bar : MonoBehaviour
     public void SetMaxHealth(int health) // autre methode pour la valeur maximalou donne l'information de la variable health
     {
         slider.maxValue = health; // un gameobject un slider on utilise celà pour les barre de vie et on dit que la valeu maxiam correspond à la variable health
-        slider.value = health; // et pareil pour la valeur si elle baisse
+        slider.value = health; // c'est pour le fond cette fois ci
     }
 
     public void SetHealth(int health)
