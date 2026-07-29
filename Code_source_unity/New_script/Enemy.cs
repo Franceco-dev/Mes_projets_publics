@@ -4,8 +4,8 @@ public class Enemy : MonoBehaviour
 {
     // ici c'est les variable ^-^
     [Header("Stats")]
-    public int MaxHealth = 3; // l'enemy a trois points de vie
-    private int currentHealth; // barre de vie actuelle
+    public int VieMaximal = 3; // l'enemy a trois points de vie
+    private int VieActuelle; // barre de vie actuelle
     public int contactDamage = 20;
     public float speed = 3f;
 
@@ -19,25 +19,25 @@ public class Enemy : MonoBehaviour
     void Start() // action de départ normalement ici c'est quand on lance le programme 
     {
         rb = GetComponent<Rigidbody2D>();
-        currentHealth = MaxHealth; // vie actuelle est égale à la vie maximale
+        VieActuelle = VieMaximal; // vie actuelle est égale à la vie maximale
     }
 
     public void TakeDamage(int damage) // ceci est une méthode pour les dégats
     {
-        currentHealth -= damage; // la barre de vie actuelle est réduite par la fonction damage si j'ai bien compris
+        VieActuelle -= damage; // la barre de vie actuelle est réduite par la fonction damage si j'ai bien compris
         Debug.Log("L'enemy est touché ! Il lui reste :  point de vie" + currentHealth); // la console de unity nous indique quand on touche l'enemy
 
         if (HitParticles != null)
         {
             Instantiate(HitParticles, transform.position, Quaternion.identity);
         }
-        if (currentHealth <= 0) // si la barre de vie actuelle de l'enemy est plus petit ou égal à zero 
+        if (VieActuelle <= 0) // si la barre de vie actuelle de l'enemy est plus petit ou égal à zero 
         {
-            Die(); // ceci est une fonction pour tuer l'enemy est carrement supprimmer du moteur
+            Mort(); // ceci est une fonction pour tuer l'enemy est carrement supprimmer du moteur
         }
     }
 
-    void Die()
+    void Mort() // autre methode
     {
         Debug.Log("Vous avez vaincu !"); // je pense que c'est assez clair ^-^
         Destroy(gameObject); // détruire le gameObject
