@@ -12,17 +12,17 @@ public class Enemy : MonoBehaviour
     public Transform target; // ici c'est le tag pour que l'enemy sache ce qu'on doit faire 
     
     [Header("effect")]
-    public GameObject HitParticles;
+    public GameObject HitParticles; // tableau graphique pour glisser les particules
 
-    private Rigidbody2D rb;
+    private Rigidbody2D rb; // on applque la physique à notre enemy
 
     void Start() // action de départ normalement ici c'est quand on lance le programme 
     {
         rb = GetComponent<Rigidbody2D>();
-        currentHealth = MaxHealth;
+        currentHealth = MaxHealth; // vie actuelle est égale à la vie maximale
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage) // ceci est une méthode pour les dégats
     {
         currentHealth -= damage; // la barre de vie actuelle est réduite par la fonction damage si j'ai bien compris
         Debug.Log("L'enemy est touché ! Il lui reste :  point de vie" + currentHealth); // la console de unity nous indique quand on touche l'enemy
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         }
         if (currentHealth <= 0) // si la barre de vie actuelle de l'enemy est plus petit ou égal à zero 
         {
-            Die(); // meurs hahahahahahahahahahahahahahahahahahahahahah dans ce monde c'est tuer ou être tué
+            Die(); // ceci est une fonction pour tuer l'enemy est carrement supprimmer du moteur
         }
     }
 
@@ -52,30 +52,30 @@ public class Enemy : MonoBehaviour
 
         float moveDir = direction > 0 ? 1 : -1;  
         // si on est loin du roi 
-        if (distance > 0.2f)
+        if (distance > 0.2f) // 0.2f est assez raisonable on est sur que il le touche
         {
            
 
-           rb.velocity = new Vector2(moveDir * speed, rb.velocity.y); // on avance  
+           rb.velocity = new Vector2(moveDir * speed, rb.velocity.y); // on avance seulement
 
-           transform.localScale = new Vector2(moveDir * 4f, 4f); // on retourne le sprite si il doit se diriger à gauche d'après ce que j'ai compris
+           transform.localScale = new Vector2(moveDir * 4f, 4f); // on retourne le sprite si il doit se diriger à gauche d'après ce que j'ai compris si il pars de la droite
 
         }
         else
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.velocity = new Vector2(0, rb.velocity.y); // sinon on laisse tel quelle
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) // ceci est une autre méthode comparé à un void fixed update il contient des informations importante pour les collision le nom de la méthode ne change pas
     {
-      if (collision.gameObject.CompareTag("Player"))
+      if (collision.gameObject.CompareTag("Player")) // si l'enemy touche le joueur 
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>(); // cette ligne contient une classe ou un heritage je crois et je crois que elle enlève de la vie au joueur
 
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(contactDamage, transform.position);
+                playerHealth.TakeDamage(contactDamage, transform.position); // c'est juste ici
             }
         }  
     }
