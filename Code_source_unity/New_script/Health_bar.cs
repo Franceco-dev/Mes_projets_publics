@@ -13,7 +13,7 @@ public class Health_bar : MonoBehaviour
 
     public void SetHealth(int health)
     {
-        slider.value = health; // on indique aussi pour la valeur cette fois
+        slider.value = health; // ça gère la valeur dela vie quad elle baisse
     }
 }
 
