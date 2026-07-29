@@ -1,11 +1,11 @@
-using UnityEngine; // j'ai utilisé de l'IA pour ce script mais j'ai aussi fais seul un petit peu car c'est pas non plus facile
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     // ici c'est les variable ^-^
     [Header("Stats")]
-    public int VieMaximal = 3; // l'enemy a trois points de vie
-    private int VieActuelle; // barre de vie actuelle
+    public int MaxHealth = 3; // l'enemy a trois points de vie
+    private int currentHealth; // barre de vie actuelle
     public int contactDamage = 20;
     public float speed = 3f;
 
@@ -19,25 +19,25 @@ public class Enemy : MonoBehaviour
     void Start() // action de départ normalement ici c'est quand on lance le programme 
     {
         rb = GetComponent<Rigidbody2D>();
-        VieActuelle = VieMaximal; // vie actuelle est égale à la vie maximale
+        currentHealth = MaxHealth; // vie actuelle est égale à la vie maximale
     }
 
     public void TakeDamage(int damage) // ceci est une méthode pour les dégats
     {
-        VieActuelle -= damage; // la barre de vie actuelle est réduite par la fonction damage si j'ai bien compris
-        Debug.Log("L'enemy est touché ! Il lui reste :  point de vie" + VieActuelle); // la console de unity nous indique quand on touche l'enemy
+        currentHealth -= damage; // la barre de vie actuelle est réduite par la fonction damage si j'ai bien compris
+        Debug.Log("L'enemy est touché ! Il lui reste :  point de vie" + currentHealth); // la console de unity nous indique quand on touche l'enemy
 
         if (HitParticles != null)
         {
             Instantiate(HitParticles, transform.position, Quaternion.identity);
         }
-        if (VieActuelle <= 0) // si la barre de vie actuelle de l'enemy est plus petit ou égal à zero 
+        if (currentHealth <= 0) // si la barre de vie actuelle de l'enemy est plus petit ou égal à zero 
         {
-            Mort(); // ceci est une fonction pour tuer l'enemy est carrement supprimmer du moteur
+            Die(); // ceci est une fonction pour tuer l'enemy est carrement supprimmer du moteur
         }
     }
 
-    void Mort() // autre methode
+    void Die()
     {
         Debug.Log("Vous avez vaincu !"); // je pense que c'est assez clair ^-^
         Destroy(gameObject); // détruire le gameObject
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
 
            rb.velocity = new Vector2(moveDir * speed, rb.velocity.y); // on avance seulement
 
-           transform.localScale = new Vector2(moveDir * 4f, 4f); // on retourne le sprite si il doit se diriger à gauche d'après ce que j'ai compris si il pars de la droite j'ai utilisé de l'IA pour celà 
+           transform.localScale = new Vector2(moveDir * 4f, 4f); // on retourne le sprite si il doit se diriger à gauche d'après ce que j'ai compris si il pars de la droite
 
         }
         else
