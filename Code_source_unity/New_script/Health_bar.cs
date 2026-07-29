@@ -3,7 +3,7 @@ using UnityEngine.UI; // blibliothèque pour le visuel
 
 public class Health_bar : MonoBehaviour
 {
-    public Slider slider; // c'est un heritage ou une classe j'aimerai un jour avoir la réponse
+    public Slider slider; // c'est une classe Slider contient toute les informations
     
     public void SetMaxHealth(int health) // autre methode pour la valeur maximalou donne l'information de la variable health
     {
