@@ -17,7 +17,7 @@ void setup(){
 
 }
 
-void loop(){
+void loop(){ // je sais que il y a une methode des arrays mais j'ai pas encore vraiment appris en cpp Arduino
 
   if(digitalRead(buttonPin) == HIGH){
     Serial.println("j'ai appuyer sur ce bouton");
