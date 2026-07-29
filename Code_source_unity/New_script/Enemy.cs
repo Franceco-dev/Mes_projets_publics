@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage) // ceci est une méthode pour les dégats
     {
         VieActuelle -= damage; // la barre de vie actuelle est réduite par la fonction damage si j'ai bien compris
-        Debug.Log("L'enemy est touché ! Il lui reste :  point de vie" + currentHealth); // la console de unity nous indique quand on touche l'enemy
+        Debug.Log("L'enemy est touché ! Il lui reste :  point de vie" + VieActuelle); // la console de unity nous indique quand on touche l'enemy
 
         if (HitParticles != null)
         {
