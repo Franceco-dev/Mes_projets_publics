@@ -6,7 +6,12 @@ J'ai aussi pratiqué Unity un moteur de jeu polyvalent pendant 6 semaines j'arri
 
 Durant ces 6 semaines j'ai réalisé un petit tower défense en side scroller 2D que vous pouvez d'ailleurs tester si ça vous chante. J'ai fais pas mal de chose seul assembler les script corriger quelques bugs fais quelques bouts de scripts, animation des enemy, du joueur, design de la carte, gestion physique et collision. Mais j'ai eu besoin daide notamment pour les parties technique du code, la barre de vie, le menu d'accueil, le game over du roi et scripts d'animations du joueur (car l'Animator ne fonctionnait pas ce qui explique la taille du script), ou j'ai du regarder pas mal de tutoriel, un peu de documentation et parfois usage de l'intelligence artificielle pour comprendre de manière générale comment fonctionnait le code ce qui se voit d'ailleurs dans les scripts car je commente beaucoup les scripts. vous pouvez aussi analyser le code source pour voir aussi comment je me suis pris.
 
-j'aime bien aussi pratiqué de l'électronique sur mon Arduino grâce aux guide, des tutoriel et mes petites capacités, j'ai réussi à faire pas mal de choses sympa afficher 
+J'aime bien aussi pratiqué de l'électronique sur mon Arduino grâce aux guide, des tutoriel et mes petites capacités, j'ai réussi à faire pas mal de choses sympas clignoter une led, un Amouromètre, un buzzer et un vaisseau spatiale avec des leds.
+
+j'utilise aussi le terminal Linux je sais taper des commandes simple généralement pour mettre à jour ses paquets (sudo apt update (vérifie les paquets à mettre à jour) && sudo apt full-upgrade -y (mettre entièrement les paquets à jour sans passer par la confirmation), créer des dossiers et y entrer dedans (mkdir xx et cd ~/ xxx). Je sais aussi éteindre, redémarrer, regarder la dernière version de mon os télécharger des liens précis, télécharger des paquets. j'utilise souvent ces commandes sur mon raspberry pi sans interface graphique ou j'héberge un serveur bloquer de pub grâce à pi-hole. 
+
+c'est à peu près tout ce que j'ai fais jusqu'à maintenant comme projet je changerai mon README.md si j'ai d'autre projet à l'avenir.
+                                                                                                                  
 
 
 
