@@ -22,7 +22,7 @@ J'utilise régulièrement le terminal Linux. Je maîtrise les commandes de base,
 
 Je sais également créer des dossiers et y naviguer (`mkdir xx` et `cd ~/xx`), éteindre, redémarrer, vérifier la version du système, télécharger des paquets et des fichiers via des liens précis. J'utilise souvent ces commandes en ligne de commande pure (sans interface graphique) sur mon Raspberry Pi, sur lequel j'héberge un serveur bloqueur de pubs grâce à Pi-hole.
 
----
+
 C'est à peu près tout ce que j'ai réalisé jusqu'à maintenant. Je mettrai ce fichier `README.md` à jour au fur et à mesure de mes futurs projets !
 
 
