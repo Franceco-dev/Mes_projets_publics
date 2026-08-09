@@ -1,4 +1,4 @@
-Bonjour, je m'appelle Francesco. Je suis débutant en informatique et, sur ce répertoire GitHub, j'ai réalisé pas mal de projets différents.
+Bonjour, je m'appelle Francesco. Je suis débutant en informatique et sur ce répertoire GitHub, j'ai réalisé pas mal de projets différents.
 
 ##### PYTHON SUR RASPBERRY PI 5 (THONNY) & JAVA
 Premièrement, j'ai programmé une calculatrice en Python tout seul, sans aucune aide, uniquement avec ma logique. Je l'ai faite sur mon Raspberry Pi 5 et vous pouvez observer la façon dont je m'y suis pris ainsi que ma logique globale. 
