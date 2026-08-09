@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class Basik_Moveset : MonoBehaviour
+public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("")] mais à la fin j'ai du utilisé de l'IA car c'était aussi complexe cette parti bien que j'ai documenté la logiue globale
 {
+    //on peut tout gerer ces frames grâce à header
     [Header ("Idle")]
     public Sprite[] idleRight;
     public Sprite[] idleLeft;
@@ -27,30 +28,30 @@ public class Basik_Moveset : MonoBehaviour
     public Sprite[] attackLeft;
     public float attackFPS = 10f;
 
-    private SpriteRenderer sr;
-    private PlayerController controller;
-    private Rigidbody2D rb;
+    private SpriteRenderer sr; // on applique le visuel
+    private PlayerController controller; // on applique les controles
+    private Rigidbody2D rb; // et la phisyque
 
-    private float timer;
-    private int frameIndex;
+    private float timer; //le temp
+    private int frameIndex;// et les frames d'invicibilité
 
-    private enum AnimState { Idle, Run, Jump, Fall, Attack }
-    private AnimState currentState;
+    private enum AnimState { Idle, Run, Jump, Fall, Attack } //on applique les animations
+    private AnimState currentState; // on applique l'animation actuelle si elle attaque, saute, tombe etc
 
-    void Start()
+    void Start() // début du jeu
     {
         sr = GetComponent<SpriteRenderer>();
-        controller = GetComponent<PlayerController>();
-        rb = GetComponent<Rigidbody2D>();
+        controller = GetComponent<PlayerController>(); // la variable controller = au script PlayerController
+        rb = GetComponent<Rigidbody2D>(); 
     }
 
-    void Update()
+    void Update() // durant le jeu on applique les animation et les mises à jour de l'état d'animation
     {
         UpdateState();
         PlayerAnimation();
     }
 
-    void UpdateState()
+    void UpdateState() //methode pour changer l'état des animations
     {
         // 1. Si on est déjà en train d’attaquer, on ne touche plus à l’état
         if (currentState == AnimState.Attack)
@@ -59,7 +60,7 @@ public class Basik_Moveset : MonoBehaviour
         // 2. Si une attaque vient d’être déclenchée
         if (controller.isAttacking)
         {
-            SetState(AnimState.Attack);
+            SetState(AnimState.Attack); 
             return;
         }
 
