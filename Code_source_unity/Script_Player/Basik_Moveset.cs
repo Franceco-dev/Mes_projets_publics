@@ -33,7 +33,7 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
     private Rigidbody2D rb; // et la phisyque
 
     private float timer; //le temp
-    private int frameIndex;// et les frames d'invicibilité
+    private int frameIndex;// et les numéro de frames
 
     private enum AnimState { Idle, Run, Jump, Fall, Attack } //on applique les animations
     private AnimState currentState; // on applique l'animation actuelle si elle attaque, saute, tombe etc
@@ -85,7 +85,7 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
         }
     }
 
-    void SetState(AnimState newState) 
+    void SetState(AnimState newState) //méthode qui permet de checker l'état de l'animation suivant
     {
         if (newState == currentState)
             return;
@@ -102,7 +102,8 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
 
         bool facingRight = controller.isFacingRight;
 
-        switch (currentState) // c'est quoi switch ??
+        switch (currentState) //cette fonction sert à checker à chaque fois l'état des animations actuelle eviter de toujours utiliser celà car on peut se retrouver si on a 200 animaitons avec un swtich de 200 lignes
+            
         {
             case AnimState.Idle:
                 anim = facingRight ? idleRight : idleLeft;
@@ -135,12 +136,11 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
 
         timer += Time.deltaTime; // on utilise pas de corutine car on veut pas que en 5 secondes l a fais trois de ses frames d'animation tandis que Time.deltaTime pour en gros adapter les image seconde par rapport à la puissance de l'ordinateur
         
-        if (timer >= 1f / fps)
-        {
+        if (timer >= 1f / fps) // si on est en idle ou run on joue à l'infini sinon on joue attaque. jump, fall une seul fois        {
             timer = 0f;
             frameIndex++;
 
-            if (currentState == AnimState.Idle || currentState == AnimState.Run)
+            if (currentState == AnimState.Idle || currentState == AnimState.Run) 
             {
                 frameIndex %= anim.Length;
             }
@@ -160,7 +160,7 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
                     }
                 }
             }
-        } // j'ai pas tout compris car c'est un peu dur il faut être bon en math et tout non ???
+        } 
 
         // Sécurité si on change de direction et donc de tableau
         frameIndex = Mathf.Clamp(frameIndex, 0, anim.Length - 1);
