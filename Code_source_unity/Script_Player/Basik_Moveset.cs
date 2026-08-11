@@ -65,27 +65,27 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
         }
 
         // 3. Logique normale de mouvement
-        bool grounded = controller.isGrounded;
+        bool grounded = controller.isGrounded; //on check si il est sur le sol
         float moveX = controller.MoveX;
         float velY = rb.velocity.y;
 
-        if (!grounded)
+        if (!grounded) // si il 'est pas sur le sol
         {
-            if (velY > 0.1f)
-                SetState(AnimState.Jump);
+            if (velY > 0.1f) 
+                SetState(AnimState.Jump); // on commence à faire l'animation de saut
             else if (velY < -0.1f)
-                SetState(AnimState.Fall);
+                SetState(AnimState.Fall); // une fois le point le plus haut on descentgrâce à l'animation fall
         }
         else
         {
             if (Mathf.Abs(moveX) > 0.1f)
                 SetState(AnimState.Run);
             else
-                SetState(AnimState.Idle);
+                SetState(AnimState.Idle); // si l fait rien on passe à idle
         }
     }
 
-    void SetState(AnimState newState)
+    void SetState(AnimState newState) 
     {
         if (newState == currentState)
             return;
@@ -95,14 +95,14 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
         timer = 0f;
     }
 
-    void PlayerAnimation()
+    void PlayerAnimation() //méthode pur les animations du joueur
     {
         Sprite[] anim = null;
         float fps = 6f;
 
         bool facingRight = controller.isFacingRight;
 
-        switch (currentState)
+        switch (currentState) // c'est quoi switch ??
         {
             case AnimState.Idle:
                 anim = facingRight ? idleRight : idleLeft;
@@ -128,13 +128,13 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
                 anim = facingRight ? attackRight : attackLeft;
                 fps = attackFPS;
                 break;
-        }
+        } // on programme pour les 2 coté
 
         if (anim == null || anim.Length == 0)
             return;
 
-        timer += Time.deltaTime;
-
+        timer += Time.deltaTime; // on utilise pas de corutine car on veut pas que en 5 secondes l a fais trois de ses frames d'animation tandis que Time.deltaTime pour en gros adapter les image seconde par rapport à la puissance de l'ordinateur
+        
         if (timer >= 1f / fps)
         {
             timer = 0f;
@@ -160,7 +160,7 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
                     }
                 }
             }
-        }
+        } // j'ai pas tout compris car c'est un peu dur il faut être bon en math et tout non ???
 
         // Sécurité si on change de direction et donc de tableau
         frameIndex = Mathf.Clamp(frameIndex, 0, anim.Length - 1);
