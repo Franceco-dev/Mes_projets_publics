@@ -3,7 +3,7 @@ Bonjour, je m'appelle Francesco. Je suis débutant en informatique et sur ce ré
 ##### PYTHON SUR RASPBERRY PI 5 (THONNY) & JAVA
 Premièrement, j'ai programmé une calculatrice en Python tout seul, sans aucune aide, uniquement avec ma logique. Je l'ai faite sur mon Raspberry Pi 5 et vous pouvez observer la façon dont je m'y suis pris ainsi que ma logique globale. 
 
-J'ai fait la même chose en Java, mais sans utiliser la programmation orientée objet (POO), car je ne l'avais pas encore apprise quand j'ai commencé le projet. En Java, je maîtrise pour le moment les variables, les conditions, les opérateurs (`&&`, `||`, `!=`, `%`, etc.) et enfin les méthodes, sur lesquelles j'ai également fait un exercice.
+J'ai fait la même chose en Java, mais sans utiliser la programmation orientée objet (POO), car je ne l'avais pas encore apprise quand j'ai commencé le projet. En Java, je maîtrise pour le moment les variables, les conditions, les opérateurs (`&&`, `||`, `!=`, `%`, etc.), les méthodes et enfin la POO simple (classes, objets, attribut) sur lesquelles j'ai également fait un exercice pour le moment.
 
 ##### PETIT JEU SUR UNITY (AVEC DE L'AIDE)
 J'ai aussi pratiqué Unity, un moteur de jeu polyvalent. Durant quatre mois, j'ai appris à gérer seul l'interface graphique du logiciel (gestion de la physique, des sprites, des collisions, de la tilemap et des animations). Je sais aussi coder quelques scripts simples, notamment la création de tableaux avec l'attribut `[Header("")]` qui permet de glisser-déposer des GameObjects, des Materials ou des frames d'animation directement dans l'inspecteur, ainsi qu'une partie de la barre de vie et d'autres petits systèmes du même genre.
