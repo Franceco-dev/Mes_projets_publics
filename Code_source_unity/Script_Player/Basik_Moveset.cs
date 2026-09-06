@@ -102,7 +102,7 @@ public class Basik_Moveset : MonoBehaviour // J'ai fait le début avec [Header("
 
         bool facingRight = controller.isFacingRight;
 
-        // Cette fonction sert à vérifier à chaque fois l'état des animations actuelles. Évitez de toujours utiliser cela, car on peut se retrouver, si on a 200 animations, avec un switch de 200 lignes.
+        // Ce switch sert à vérifier à chaque fois l'état des animations actuelles. Évitez de toujours utiliser cela, car on peut se retrouver, si on a 200 animations, avec un switch de 200 lignes.
         switch (currentState) 
         {
             case AnimState.Idle:
