@@ -55,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // Ralentit l'ordinateur pour que l'on puisse voir les 5 secondes, sinon tout se ferait trop vite. C'est le principe d'une coroutine.
+// Une fonction pour laisser un temps de délai de 5 secondes. Il s'agit de la coroutine.
     private IEnumerator DeathSequence() 
     {
         Debug.Log("Le joueur est mort, attente de 5 secondes...");
