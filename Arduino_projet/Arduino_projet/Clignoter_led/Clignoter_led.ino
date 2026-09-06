@@ -6,7 +6,7 @@ void setup(){ // Départ comme dans Unity.
 
 void loop(){ // Pendant le programme comme dans Unity.
 
-  digitalWrite(3, HIGH); // Une autre fonction qui permet d'envoyer en boucle du courant, en vrai le C++ Arduino c'est simple.
+  digitalWrite(3, HIGH); // Une autre fonction qui permet d'envoyer en boucle du courant.
   delay(500); // Facile : c'est le délai de 500 millisecondes.
   digitalWrite(3, LOW); // Une fonction qui enlève le courant.
   delay(500); // On enlève le courant pendant 500 millisecondes littéralement.
