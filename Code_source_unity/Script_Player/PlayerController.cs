@@ -1,11 +1,11 @@
 using UnityEngine;
-//j'ai aussi utilisé de l'IA pour les inputs bien qu'encore une fois j'ai essayé de comprendre la logique globale
+// J'ai aussi utilisé de l'IA pour les inputs bien qu'encore une fois j'ai essayé de comprendre la logique globale.
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement")] // attribut vitesse et accelaration
+    [Header("Movement")] // Attribut vitesse et accélération.
     public float moveSpeed = 6f;
     public float acceleration = 10f;
-    [Header("Jump")] // attribut de force de gravité
+    [Header("Jump")] // Attribut de force de gravité.
     public float jumpForce = 12f;
     public Transform groundCheck;
     public float groundRadius = 0.1f;
@@ -14,16 +14,16 @@ public class PlayerController : MonoBehaviour
     [Header("Attack")]
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public LayerMask enemyLayer; // attribut attaque
+    public LayerMask enemyLayer; // Attribut attaque.
 
-    [HideInInspector] public float MoveX; // les deplacement
-    [HideInInspector] public bool isGrounded; // verifie si il est sur le sol
+    [HideInInspector] public float MoveX; // Les déplacements.
+    [HideInInspector] public bool isGrounded; // Vérifie s'il est au sol.
     [HideInInspector] public bool isFacingRight = true; 
-    [HideInInspector] public bool isAttacking = false; // on met une boolean pour checker si il est entrain d'attaquer ou non
+    [HideInInspector] public bool isAttacking = false; // On met un booléen pour checker s'il est en train d'attaquer ou non.
 
-    private Rigidbody2D rb; // on applique la phisyque
+    private Rigidbody2D rb; // On applique la physique.
 
-    void Start() //départ du jeu
+    void Start() // Départ du jeu.
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -34,10 +34,10 @@ public class PlayerController : MonoBehaviour
         HandleFlip();
     }
 
-    void FixedUpdate() // plus optimisé pour la phisyque que update tout court
+    void FixedUpdate() // Plus optimisé pour la physique que update tout court.
     {
-        ApplyMovement(); // appliquer les mouvements
-        CheckGround(); // on regarde si il est dans le sol
+        ApplyMovement(); // Appliquer les mouvements.
+        CheckGround(); // On regarde s'il est au sol.
     }
 
     void HandleInput()
@@ -46,37 +46,37 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // si boutton x PS5 est pressé est il est sur le sol il peut sauter
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Si le bouton X de la PS5 est pressé et qu'il est au sol, il peut sauter.
         }
 
         // Attaque : carré PS5 ou clic gauche
         if ((Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetMouseButtonDown(0)) && !isAttacking)
         {
-            StartAttack(); // on commence à attaquer
+            StartAttack(); // On commence à attaquer.
         }
     }
 
-    void StartAttack() // methode pour l'attaque
+    void StartAttack() // Méthode pour l'attaque.
     {
-        isAttacking = true;// on passe à vrai l'attaque
+        isAttacking = true; // On passe à vrai l'attaque.
 
-        Collider2D[] hitEnmies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer); // on controlle si il a touché l'enemy
+        Collider2D[] hitEnmies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer); // On contrôle s'il a touché l'ennemi.
 
-        foreach (Collider2D enemy in hitEnmies) // on check sa collision
+        foreach (Collider2D enemy in hitEnmies) // On check sa collision.
         {
             Enemy enemyScript = enemy.GetComponent<Enemy>(); 
 
-            if (enemyScript != null) // si on la touché
+            if (enemyScript != null) // Si on l'a touché.
             {
-                enemyScript.TakeDamage(1); // on lui enlève 1 coeur
-                Debug.Log("On a frappé : " + enemy.name); // on signale
+                enemyScript.TakeDamage(1); // On lui enlève 1 cœur.
+                Debug.Log("On a frappé : " + enemy.name); // On signale.
             }
         }
     }
 
-    public void EndAttack() // methode quand c'est fini
+    public void EndAttack() // Méthode quand c'est fini.
     {
-        isAttacking = false; //on passe à faux
+        isAttacking = false; // On passe à faux.
     }
 
     void ApplyMovement()
@@ -85,14 +85,14 @@ public class PlayerController : MonoBehaviour
         float speed = Mathf.Lerp(rb.velocity.x, targetSpeed, acceleration * Time.fixedDeltaTime);
 
         rb.velocity = new Vector2(speed, rb.velocity.y);
-    } //calcule de manière fluide les deplacement des joueur on utilise Time.fixedDeltaTime touours pour une question de physique
+    } // Calcule de manière fluide les déplacements du joueur, on utilise toujours Time.fixedDeltaTime pour une question de physique.
 
-    void CheckGround() // methode pour controller si ilest sur le sol
+    void CheckGround() // Méthode pour contrôler s'il est au sol.
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer); 
     }
 
-    void HandleFlip() // methode de securité
+    void HandleFlip() // Méthode de sécurité.
     {
         // On ne se retourne pas pendant l’attaque
         if (isAttacking) return;
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
             pos.x *= -1;
             attackPoint.localPosition = pos;
         }
-    } // en gros quand il se retourne on veut que il attaque dans le sens ou on a choisi sinon ce serai bizzare
+    } // En gros, quand il se retourne, on veut qu'il attaque dans le sens qu'on a choisi sinon ce serait bizarre.
 
     void OnDrawGizmosSelected()
     {
@@ -123,6 +123,6 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         }
     }
-} // une sorte de hitbox pour l'épé
+} // Une sorte de hitbox pour l'épée.
 
 
