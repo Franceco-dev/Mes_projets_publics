@@ -1,57 +1,55 @@
 const int PinSenso = A0; // Variable constante qui ne change jamais pour définir la broche analogique.
-const float Temp = 13.0; // Température. 
-
+const float Temp = 13.0; // Température de référence. 
 
 void setup() {
-  Serial.begin(9600); // Ouvrir un port de série 9600 qui signifie la vitesse avec laquelle Arduino communique.
-  for (int pinNumber = 2; pinNumber<5; pinNumber++){
-    pinMode(pinNumber, OUTPUT); // On envoie du courant pour pinNumber.
-    digitalWrite(pinNumber, LOW);
+  Serial.begin(9600); // Ouvrir le port série à 9600 bauds (vitesse de communication de l'Arduino).
+  for (int pinNumber = 2; pinNumber < 5; pinNumber++){
+    pinMode(pinNumber, OUTPUT); // On définit les broches 2, 3 et 4 en mode sortie.
+    digitalWrite(pinNumber, LOW); // On les éteint par défaut.
   }
- 
 }
 
 void loop() {
   int sensorVal = analogRead(PinSenso);
   Serial.print("Valeur du capteur : ");
   Serial.print(sensorVal);
-  float voltage = (sensorVal/1024.0) * 5.0; // Convertir la lecture du CAN en tension.
+  
+  float voltage = (sensorVal / 1024.0) * 5.0; // Convertir la lecture du CAN en tension.
   Serial.print(", Volts : ");
   Serial.print(voltage);
+  
   Serial.print(", degrés C : ");
-  // Il faut convertir la tension de la température en degrés maintenant et ouais.
-  float temperature = (voltage - .5) * 100;
+  // Conversion de la tension en degrés Celsius.
+  float temperature = (voltage - 0.5) * 100;
   Serial.println(temperature);
 
-  if (temperature < Temp+2){
+  if (temperature < Temp + 2){
     digitalWrite(2, LOW);
     digitalWrite(3, LOW);
     digitalWrite(4, LOW);
-    Serial.print("Vous n'êtes pas amoureux");
+    Serial.println(" Vous n'êtes pas amoureux.");
+  } // On n'allume aucune LED si la température n'est pas supérieure de 2°C à la variable Temp.
 
-  }// On allume aucune LED si la valeur n'est pas supérieure de 2 à la variable Temp.
-
-  else if (temperature >= Temp+2 && temperature < Temp+4){
+  else if (temperature >= Temp + 2 && temperature < Temp + 4){
     digitalWrite(2, HIGH);
     digitalWrite(3, LOW);
-    digitalWrite(4,LOW);
-    Serial.print("Vous êtes un peu amoureux");
-  } // On allume une LED si on...
+    digitalWrite(4, LOW);
+    Serial.println(" Vous êtes un peu amoureux.");
+  } // On allume une LED.
   
-  else if (temperature >= Temp+4 && temperature < Temp+6){
+  else if (temperature >= Temp + 4 && temperature < Temp + 6){
     digitalWrite(2, HIGH);
     digitalWrite(3, HIGH);
     digitalWrite(4, LOW);
-    Serial.print("Vous êtes légèrement amoureux");
-  } /// Vous êtes assez amoureux on peut le dire c'est la même chose que la première condition.
+    Serial.println(" Vous êtes légèrement amoureux.");
+  } // On allume deux LED.
 
-  else if (temperature >= Temp+6){
+  else if (temperature >= Temp + 6){
     digitalWrite(2, HIGH);
     digitalWrite(3, HIGH);
     digitalWrite(4, HIGH);
-    Serial.print("Vous avez un gros coup de cœur");
-  }// Pareil cette fois mais en plus 6 et vous avez un énorme coup de coeur.
+    Serial.println(" Vous avez un gros coup de cœur !");
+  } // On allume les trois LED si la température dépasse Temp + 6°C.
 
   delay(1000);
-  
 }
