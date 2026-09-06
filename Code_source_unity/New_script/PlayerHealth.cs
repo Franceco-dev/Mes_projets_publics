@@ -20,16 +20,16 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        currentHealth = MaxHealth; // Au départ, notre barre de vie actuelle est égale à notre vie maximum, logique 
+        currentHealth = MaxHealth; // Au départ, notre barre de vie actuelle est égale à notre vie maximale, logique 
         healthBar.SetMaxHealth(MaxHealth); // Et notre barre de vie est entièrement remplie
         sr = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>(); // On récupère le rigidbody
+        rb = GetComponent<Rigidbody2D>(); // On récupère le Rigidbody
     }
 
     // Méthode pour les dégâts : on indique au départ une variable de type int pour les dégâts et pour le knockback
     public void TakeDamage(int damage, Vector2 damageSourcePosition) 
     {
-        if (isInvincible || currentHealth <= 0) return; // Si on est mort, on prend zéro dégat 
+        if (isInvincible || currentHealth <= 0) return; // Si on est mort, on prend zéro dégât 
 
         currentHealth -= damage; // Les dégâts réduisent la barre de vie actuelle
         healthBar.SetHealth(currentHealth); // La barre de vie se vide
@@ -66,6 +66,9 @@ public class PlayerHealth : MonoBehaviour
         if(GetComponent<PlayerController>() != null) // Par défaut, on peut contrôler le joueur tant qu'il n'est pas mort
             GetComponent<PlayerController>().enabled = false; // On le désactive grâce à cela
 
+        // CORRECTION TECHNIQUE : On annule le mouvement prévu pour éviter qu'il bouge pendant qu'il est mort
+        CancelInvoke("ReenableMovement"); 
+
         yield return new WaitForSeconds(5f); // On attend 5 secondes
 
         currentHealth = MaxHealth; // Quand on réinitialise, notre barre de vie est de retour
@@ -99,7 +102,8 @@ public class PlayerHealth : MonoBehaviour
 
     void ReenableMovement()
     {
-        if(GetComponent<PlayerController>() != null)
+        //On vérifie que le joueur est bien vivant avant de lui redonner les contrôles
+        if(GetComponent<PlayerController>() != null && currentHealth > 0)
         {
           GetComponent<PlayerController>().enabled = true;
         }
