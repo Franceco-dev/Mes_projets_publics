@@ -1,19 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Menuprincipale : MonoBehaviour
+public class MenuPrincipal : MonoBehaviour // Corrigé : Principal (sans e)
 {
-    public string levelToload; // variable de type plusieur caractère
+    public string levelToLoad; // Corrigé : ToLoad (L majuscule). Variable de type chaîne de caractères
 
     public GameObject settingsWindow;
-    public void StartGame() // methode pour commencer le jeu
+    
+    public void StartGame() // Méthode pour commencer le jeu
     {
-        SceneManager.LoadScene(levelToload); // on charge la scene pour commencer le jeu
+        SceneManager.LoadScene(levelToLoad); // On charge la scène pour commencer le jeu
     }
 
-    public void SettingButton() // méthode pour interagir avec settingsWindows
+    public void SettingButton() // Méthode pour interagir avec settingsWindow
     {
-        settingsWindow.SetActive(true); //si on clique sur les options on met à true les paramètres
+        settingsWindow.SetActive(true); // Si on clique sur les options, on active la fenêtre
     }
 
     public void CloseSettingsWindow()
@@ -21,8 +22,8 @@ public class Menuprincipale : MonoBehaviour
         settingsWindow.SetActive(false);
     }
 
-    public void QuitGame() // methode qui permet de quitter le jeu 
+    public void QuitGame() // Méthode qui permet de quitter le jeu 
     {
-        Application.Quit(); // on quitte l'application tout simplement ^-^
+        Application.Quit(); // On quitte l'application tout simplement ^-^
     }
 }
