@@ -11,6 +11,6 @@ public class guerrier {
     }
 
     public void guerrierStats(){
-        System.out.println("Votre guerrier se nomme " + nom + " son metier est " + metier + " et possède " + vie + "  points de vie");
+        System.out.println("Votre guerrier se nomme " + nom + ", son métier est " + metier + " et il possède " + vie + " points de vie.");
     }
 }
