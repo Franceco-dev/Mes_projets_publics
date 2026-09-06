@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main{ // attention ce code n'utilise pas encore la poo il y aura peut etre d'autre code avec poo mais là je débute
+public class Main{ //Attention je n'utilise pas encore de la POO sur ce script car c'était un de mes premiers vrai script java.
     public static void main(String[] args){
 
         Scanner sc = new Scanner(System.in);
