@@ -20,7 +20,7 @@ public class WaveSpawner : MonoBehaviour
     {
         GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        if (currentEnemies.Length == 0 && !isSpawning) // Si il y a pas d'enemy et que l'état est faux on lance la prochaine vague.
+        if (currentEnemies.Length == 0 && !isSpawning) // Si il y a pas d'enemys et que l'état est faux on lance la prochaine vague.
         {
             StartCoroutine(SpawnNextWave()); // Corroutine pour eviter 300 enemy en meme temp.
         }
