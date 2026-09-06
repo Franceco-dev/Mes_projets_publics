@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("")] mais à la fin j'ai du utilisé de l'IA car c'était aussi complexe cette parti bien que j'ai documenté la logiue globale
+public class Basik_Moveset : MonoBehaviour // J'ai fait le début avec [Header("")] mais à la fin j'ai dû utiliser de l'IA car cette partie était trop complexe, bien que j'aie documenté la logique globale.
 {
-    //on peut tout gerer ces frames grâce à header
+    // On peut gérer toutes ces frames grâce aux Headers.
     [Header ("Idle")]
     public Sprite[] idleRight;
     public Sprite[] idleLeft;
@@ -28,64 +28,64 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
     public Sprite[] attackLeft;
     public float attackFPS = 10f;
 
-    private SpriteRenderer sr; // on applique le visuel
-    private PlayerController controller; // on applique les controles
-    private Rigidbody2D rb; // et la phisyque
+    private SpriteRenderer sr; // On applique le visuel.
+    private PlayerController controller; // On applique les contrôles.
+    private Rigidbody2D rb; // Et la physique.
 
-    private float timer; //le temp
-    private int frameIndex;// et les numéro de frames
+    private float timer; // Le temps.
+    private int frameIndex; // Et le numéro de frame.
 
-    private enum AnimState { Idle, Run, Jump, Fall, Attack } //on applique les animations
-    private AnimState currentState; // on applique l'animation actuelle si elle attaque, saute, tombe etc
+    private enum AnimState { Idle, Run, Jump, Fall, Attack } // On définit les états d'animation.
+    private AnimState currentState; // On applique l'animation actuelle selon si le joueur attaque, saute, tombe, etc.
 
-    void Start() // début du jeu
+    void Start() // Début du jeu.
     {
         sr = GetComponent<SpriteRenderer>();
-        controller = GetComponent<PlayerController>(); // la variable controller = au script PlayerController
+        controller = GetComponent<PlayerController>(); // La variable controller est égale au script PlayerController.
         rb = GetComponent<Rigidbody2D>(); 
     }
 
-    void Update() // durant le jeu on applique les animation et les mises à jour de l'état d'animation
+    void Update() // Durant le jeu, on applique les animations et les mises à jour de l'état d'animation.
     {
         UpdateState();
         PlayerAnimation();
     }
 
-    void UpdateState() //methode pour changer l'état des animations
+    void UpdateState() // Méthode pour changer l'état des animations.
     {
-        // 1. Si on est déjà en train d’attaquer, on ne touche plus à l’état
+        // 1. Si on est déjà en train d’attaquer, on ne touche plus à l’état.
         if (currentState == AnimState.Attack)
             return;
 
-        // 2. Si une attaque vient d’être déclenchée
+        // 2. Si une attaque vient d’être déclenchée.
         if (controller.isAttacking)
         {
             SetState(AnimState.Attack); 
             return;
         }
 
-        // 3. Logique normale de mouvement
-        bool grounded = controller.isGrounded; //on check si il est sur le sol
+        // 3. Logique normale de mouvement.
+        bool grounded = controller.isGrounded; // On vérifie s'il est sur le sol.
         float moveX = controller.MoveX;
         float velY = rb.velocity.y;
 
-        if (!grounded) // si il 'est pas sur le sol
+        if (!grounded) // S'il n'est pas sur le sol.
         {
             if (velY > 0.1f) 
-                SetState(AnimState.Jump); // on commence à faire l'animation de saut
+                SetState(AnimState.Jump); // On commence à jouer l'animation de saut.
             else if (velY < -0.1f)
-                SetState(AnimState.Fall); // une fois le point le plus haut on descentgrâce à l'animation fall
+                SetState(AnimState.Fall); // Une fois le point le plus haut atteint, on descend grâce à l'animation Fall.
         }
         else
         {
             if (Mathf.Abs(moveX) > 0.1f)
                 SetState(AnimState.Run);
             else
-                SetState(AnimState.Idle); // si l fait rien on passe à idle
+                SetState(AnimState.Idle); // S'il ne fait rien, on passe à Idle.
         }
     }
 
-    void SetState(AnimState newState) //méthode qui permet de checker l'état de l'animation suivant
+    void SetState(AnimState newState) // Méthode qui permet de vérifier l'état de l'animation suivante.
     {
         if (newState == currentState)
             return;
@@ -95,15 +95,15 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
         timer = 0f;
     }
 
-    void PlayerAnimation() //méthode pur les animations du joueur
+    void PlayerAnimation() // Méthode pour les animations du joueur.
     {
         Sprite[] anim = null;
         float fps = 6f;
 
         bool facingRight = controller.isFacingRight;
 
-        switch (currentState) //cette fonction sert à checker à chaque fois l'état des animations actuelle eviter de toujours utiliser celà car on peut se retrouver si on a 200 animaitons avec un swtich de 200 lignes
-            
+        // Cette fonction sert à vérifier à chaque fois l'état des animations actuelles. Éviter de toujours utiliser cela, car on peut se retrouver, si on a 200 animations, avec un switch de 200 lignes.
+        switch (currentState) 
         {
             case AnimState.Idle:
                 anim = facingRight ? idleRight : idleLeft;
@@ -129,14 +129,17 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
                 anim = facingRight ? attackRight : attackLeft;
                 fps = attackFPS;
                 break;
-        } // on programme pour les 2 coté
+        } // On programme pour les deux côtés.
 
         if (anim == null || anim.Length == 0)
             return;
 
-        timer += Time.deltaTime; // on utilise pas de corutine car on veut pas que en 5 secondes l a fais trois de ses frames d'animation tandis que Time.deltaTime pour en gros adapter les image seconde par rapport à la puissance de l'ordinateur
+        // On n'utilise pas de coroutine, car on ne veut pas qu'en 5 secondes il ait fait trois de ses frames d'animation, tandis que Time.deltaTime sert en gros à adapter les images par seconde par rapport à la puissance de l'ordinateur.
+        timer += Time.deltaTime; 
         
-        if (timer >= 1f / fps) // si on est en idle ou run on joue à l'infini sinon on joue attaque. jump, fall une seul fois        {
+        // Si on est en Idle ou Run, on joue l'animation à l'infini, sinon on joue Attack, Jump ou Fall une seule fois.
+        if (timer >= 1f / fps) 
+        {
             timer = 0f;
             frameIndex++;
 
@@ -162,10 +165,9 @@ public class Basik_Moveset : MonoBehaviour // j'ai fais le début avec [Header("
             }
         } 
 
-        // Sécurité si on change de direction et donc de tableau
+        // Sécurité si on change de direction et donc de tableau.
         frameIndex = Mathf.Clamp(frameIndex, 0, anim.Length - 1);
 
         sr.sprite = anim[frameIndex];
     }
 }
-
