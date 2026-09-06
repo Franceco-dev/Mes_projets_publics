@@ -4,11 +4,11 @@ using System.Collections;
 // Ce script a été réalisé en partie seul et j'ai utilisé des tutos, IA pour finaliser le script final. J'ai bien compris le fonctionnement global.
 public class WaveSpawner : MonoBehaviour
 {
-   [Header("configuration de la vague")] // Un attribut qui permet de controller dans l'interface graphique de Unity les vageus grâce au gameObject Wavespawn.
+   [Header("configuration de la vague")] // Un attribut qui permet de controller dans l'interface graphique de Unity les vagues grâce au gameObject Wavespawn.
    public GameObject enemyPrefabs; // Modèle de l'enemy (l'enemie du jeu). 
    public Transform targetKing; // C'est le roi. 
    public int NbreVague = 3; // Trois vagues.
-   public float TempEntreMonstre = 1.50f; // Ça on présente lus c'est facile. 
+   public float TempEntreMonstre = 1.50f; // Ça on présente plus c'est facile. 
    
    [Header("point de Spawn")] // Tableau pour les spawns. 
    public Transform spawnLeft; // On doit mettre dedans enemy.
