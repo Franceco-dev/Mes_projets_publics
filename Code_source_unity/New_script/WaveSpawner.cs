@@ -5,7 +5,7 @@ using System.Collections;
 public class WaveSpawner : MonoBehaviour
 {
    [Header("configuration de la vague")] // Un attribut qui permet de controller dans l'interface graphique de Unity les vagues grâce au gameObject Wavespawn.
-   public GameObject enemyPrefabs; // Modèle de l'enemy (l'enemie du jeu). 
+   public GameObject enemyPrefabs; // Modèle de l'enemy (l'ennemi du jeu). 
    public Transform targetKing; // C'est le roi. 
    public int NbreVague = 3; // Trois vagues.
    public float TempEntreMonstre = 1.50f; // Ça on présente plus c'est facile. 
@@ -30,7 +30,7 @@ public class WaveSpawner : MonoBehaviour
     {
         isSpawning = true; // L'état du spawn est vrai.
 
-        for (int i = 0; i < NbreVague; i++) // Repete autant de fois que le nbre de vague c'est à dire 3.
+        for (int i = 0; i < NbreVague; i++) // Répète autant de fois que le nbre de vague c'est à dire 3.
         {
             GameObject enemyR = Instantiate(enemyPrefabs, spawnRight.position, Quaternion.identity); // Apparition de 1 monstre à droite.
             Enemy scriptR = enemyR.GetComponent<Enemy>();
