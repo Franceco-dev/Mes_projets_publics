@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections; // Bibliothèque pour certaines fonctions, notamment IEnumerator 
 
 // Ce script a été réalisé en partie seul et j'ai utilisé des tutos, IA pour finaliser le script final. J'ai bien compris le fonctionnement global.
 public class WaveSpawner : MonoBehaviour
