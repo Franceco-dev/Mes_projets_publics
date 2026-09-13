@@ -71,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(5f); // On attend 5 secondes.
 
-        currentHealth = MaxHealth; // Quand on réinitialise, notre barre de vie est de retour.
+        currentHealth = MaxHealth; // Quand on réinitialise, notre barre de vie es de retour.
         healthBar.SetHealth(MaxHealth); // Pour remplir la barre de vie.
         sr.enabled = true; // On réapparaît là où on est mort.
 
@@ -85,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
            
     }
 
-    // Ceci est une coroutine : une fonction qui permet d'éviter que l'ordinateur calcule trop vite. Ici, on indique les informations de la phase d'invincibilité.
+    // eci est une coroutine : une fonction qui permet d'éviter que l'ordinateur calcule trop vite. Ici, on indique les informations de la phase d'invincibilité.
     private IEnumerator BecomeInvincible() 
     {
         isInvincible = true; // Vu qu'on a pris des dégâts (ou réapparu), on l'active.
@@ -102,7 +102,7 @@ public class PlayerHealth : MonoBehaviour
 
     void ReenableMovement()
     {
-        //On vérifie que le joueur est bien vivant avant de lui redonner les contrôles.
+        //On vérifie que le joueur est bi vivant avant de lui redonner les contrôles.
         if(GetComponent<PlayerController>() != null && currentHealth > 0)
         {
           GetComponent<PlayerController>().enabled = true;
