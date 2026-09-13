@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
 
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(contactDamage, transform.position); // On inflig les dégâts ici.
+                playerHealth.TakeDamage(contactDamage, transform.position); // On inflige les dégâts ici.
             }
         }  
     }
