@@ -1,4 +1,4 @@
-using UnityEngine; // Jutilisé de l'IA pour comprendre comment ça marche de manière générale.
+using UnityEngine; // J'ai utilisé de l'IA pour comprendre comment ça marche de manière générale.
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -14,7 +14,7 @@ public class King_game_over : MonoBehaviour
         // Si un objet avec le tag "Enemy" touche le roi.
         if (collision.gameObject.CompareTag("Enemy")) 
         {
-            StartCoroutine(KingDeathSequence()); // Commencer la séquence de rechargement de la scène
+            StartCoroutine(KingDeathSequence()); // Commencer la séquence de rechargement de la scène.
         }
     }
 
