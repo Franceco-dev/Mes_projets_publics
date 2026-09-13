@@ -151,7 +151,7 @@ public class Basik_Moveset : MonoBehaviour // J'ai fait le début avec [Header("
             {
                 if (frameIndex >= anim.Length)
                 {
-                    if (currentState == AnimState.Attack)
+                    if (currentState == AnimState.Attack) 
                     {
                         frameIndex = 0;
                         controller.EndAttack();
