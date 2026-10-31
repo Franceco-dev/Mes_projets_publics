@@ -1,4 +1,4 @@
-const int buttonPin = 2; // ce sont des variables 
+const int buttonPin = 2; // Ce sont des variables.
 const int Note1 = 294;
 const int Note2 = 587;
 const int Note3 = 440;
@@ -9,22 +9,17 @@ const int Note7 = 262;
 const int Note8 = 247;
 const int Note9 = 233;
 
-
-
 void setup(){
-  pinMode(buttonPin, INPUT); // configurer le pin 2 appuyer
+  pinMode(buttonPin, INPUT); // Configurer la broche 2 en entrée.
   Serial.begin(9600); 
-
 }
 
-void loop(){ // je sais que il y a une methode des arrays mais j'ai pas encore vraiment appris en cpp Arduino
+void loop(){ // Je sais qu'il y a une méthode avec des tableaux (arrays), mais je ne l'ai pas encore vraiment apprise en C++ Arduino.
 
   if(digitalRead(buttonPin) == HIGH){
     Serial.println("j'ai appuyer sur ce bouton");
 
-    
-
-    jouer(Note1, 100 );
+    jouer(Note1, 100);
     jouer(Note1, 100);
     jouer(Note2, 200);
     jouer(Note3, 200);
@@ -80,7 +75,7 @@ void loop(){ // je sais que il y a une methode des arrays mais j'ai pas encore v
     jouer(Note6, 100);
     jouer(Note5, 100);
 
-    jouer(Note1, 100 );
+    jouer(Note1, 100);
     jouer(Note1, 100);
     jouer(Note2, 200);
     jouer(Note3, 200);
@@ -135,22 +130,10 @@ void loop(){ // je sais que il y a une methode des arrays mais j'ai pas encore v
     jouer(Note1, 100);
     jouer(Note6, 100);
     jouer(Note5, 100);
-
-    
-
-    
-
-   
-
-    
-
-    
-    
-    
   } 
-} //si bouton presser jouer ces notes ci dessus 
+} // Si le bouton est pressé, jouer les notes ci-dessus.
 
 void jouer(int note, int duree){
   tone(8, note, duree);
   delay(duree + 50);
-} // fonction qui permet de faire jouer les notes à une certaine durée  
+} // Fonction qui permet de faire jouer les notes à une certaine durée.
